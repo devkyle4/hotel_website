@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
@@ -85,6 +87,21 @@ function Home() {
     "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
     "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80"
   ];
+
+  const location = useLocation();
+
+useEffect(() => {
+  if (location.hash) {
+    const sectionId = location.hash.replace("#", "");
+    const section = document.getElementById(sectionId);
+    if (section) {
+      setTimeout(() => {
+        section.scrollIntoView({ behavior: "smooth" });
+      }, 300); // wait for the page or animation to finish
+    }
+  }
+}, [location]);
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white">
