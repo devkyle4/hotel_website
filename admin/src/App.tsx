@@ -12,10 +12,10 @@ import Dashboard from "@/pages/Dashboard";
 import Bookings from "@/pages/Bookings";
 import Rooms from "@/pages/Rooms";
 import Customers from "@/pages/Customers";
+import Drinks from "@/pages/Drinks";
+import Events from "@/pages/Events";
 import Payments from "@/pages/Payments";
-import POS from "@/pages/POS";
 import Staff from "@/pages/Staff";
-import Services from "@/pages/Services";
 import Expenses from "@/pages/Expenses";
 import Reports from "@/pages/Reports";
 import NotFound from "@/pages/not-found";
@@ -27,10 +27,10 @@ function Router() {
       <Route path="/bookings" component={Bookings} />
       <Route path="/rooms" component={Rooms} />
       <Route path="/customers" component={Customers} />
+      <Route path="/drinks" component={Drinks}/>
+      <Route path="/events" component={Events}/>
       <Route path="/payments" component={Payments} />
-      <Route path="/pos" component={POS} />
       <Route path="/staff" component={Staff} />
-      <Route path="/services" component={Services} />
       <Route path="/expenses" component={Expenses} />
       <Route path="/reports" component={Reports} />
       <Route component={NotFound} />
