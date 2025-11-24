@@ -33,35 +33,24 @@ export default function Pub() {
     {
       title: "Live Band Fridays",
       date: "Every Friday • 7 PM",
-      image: "/images/gallery1.jpg",
+      image: "https://images.unsplash.com/photo-1550219363-d0adfaa43d0f?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       desc: "Enjoy live music and smooth vibes with the city’s best local bands.",
     },
     {
       title: "Karaoke Nights",
       date: "Every Saturday • 8 PM",
-      image: "/images/gallery2.jpg",
+      image: "https://plus.unsplash.com/premium_photo-1661759013744-4754d402459d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       desc: "Grab the mic and sing your heart out! Great drinks and fun atmosphere.",
     },
     {
       title: "Trivia Tuesdays",
       date: "Every Tuesday • 6 PM",
-      image: "/images/gallery3.jpg",
+      image: "https://plus.unsplash.com/premium_photo-1678103472974-a6435884b194?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       desc: "Test your knowledge and win prizes while you sip and chill.",
     },
   ];
 
-  const drinks = [
-    { name: "Tropical Cocktail", price: 45, image: "/images/pub.jpg" },
-    { name: "Craft Beer", price: 30, image: "/images/gallery5.jpg" },
-    {
-      name: "Palm Wine Special",
-      price: 25,
-      image:
-        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
-    },
-    { name: "Whiskey on Ice", price: 50, image: "/images/gallery7.jpg" },
-    { name: "Mocktail Paradise", price: 35, image: "/images/gallery8.jpg" },
-  ];
+
 
   return (
     <div className="bg-amber-50 min-h-screen">
@@ -74,15 +63,44 @@ export default function Pub() {
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-6xl font-extrabold mb-4"
+            className="text-4xl md:text-6xl font-extrabold mb-4"
           >
             The Amber Lounge
           </motion.h1>
-          <p className="text-xl mb-6">Relax. Sip. Socialize.</p>
-          <Button size="lg" className="bg-amber-600 hover:bg-amber-700">
+          <p className="text-lg md:text-xl mb-6">Relax. Sip. Socialize.</p>
+          <Button size="lg" className="bg-amber-600 hover:bg-amber-700 mb-8 md:mb-0">
             Reserve a Table
           </Button>
+
+          {/* Opening Hours - Mobile (below button) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="md:hidden mt-6 bg-black/40 backdrop-blur-md p-4 rounded-xl shadow-xl 
+      flex flex-col items-center justify-center text-center text-white text-xs
+      max-w-[280px]">
+            <h3 className="text-base font-semibold mb-2">Opening Hours</h3>
+            <p className="text-xs">Monday – Sunday: 5 PM – 1 AM</p>
+            <p className="text-xs">Happy Hour: 5 PM – 7 PM</p>
+            <p className="mt-2 text-xs">📍 Ground Floor, Hotel Lobby</p>
+            <p className="text-xs">📞 +233 555 123 456</p>
+          </motion.div>
         </div>
+
+        {/* Opening Hours - Desktop (positioned absolute right) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="hidden md:flex absolute bottom-6 right-20 bg-black/40 backdrop-blur-md p-6 rounded-full shadow-xl 
+    flex-col items-center justify-center text-center text-white">
+          <h3 className="text-2xl font-semibold mb-4">Opening Hours</h3>
+          <p>Monday – Sunday: 5 PM – 1 AM</p>
+          <p>Happy Hour: 5 PM – 7 PM</p>
+          <p className="mt-4">📍 Ground Floor, Hotel Lobby</p>
+          <p>📞 +233 555 123 456</p>
+        </motion.div>
       </section>
 
       {/* About Section */}
@@ -164,14 +182,6 @@ export default function Pub() {
         </div>
       </section>
 
-      {/* Contact & Hours */}
-      <section className="bg-amber-900 text-white py-12 text-center">
-        <h3 className="text-2xl font-semibold mb-4">Opening Hours</h3>
-        <p>Monday – Sunday: 5 PM – 1 AM</p>
-        <p>Happy Hour: 5 PM – 7 PM</p>
-        <p className="mt-4">📍 Ground Floor, Hotel Lobby</p>
-        <p>📞 +233 555 123 456</p>
-      </section>
     </div>
   );
 }

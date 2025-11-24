@@ -2,36 +2,34 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
-import { Calendar } from "./ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { 
-  CalendarIcon, 
-  MapPinIcon, 
-  PhoneIcon, 
-  MailIcon, 
-  WifiIcon, 
-  CarIcon, 
-  UtensilsIcon, 
+import { Button } from "../ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Badge } from "../ui/badge";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
+import { Calendar } from "../ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import {
+  CalendarIcon,
+  MapPinIcon,
+  PhoneIcon,
+  MailIcon,
+  WifiIcon,
+  CarIcon,
+  UtensilsIcon,
   WavesIcon,
   MessageCircleIcon,
-  StarIcon,
   UsersIcon,
-  BedIcon,
-  BathIcon,
   AirVentIcon,
   TvIcon,
-  CoffeeIcon,
   XIcon
 } from "lucide-react";
 import { format } from "date-fns";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
+import WhatsAppFloat from "../whatsapp";
+import MapLocation from "@/components/mapLocation"
 
 function Home() {
   const [checkIn, setCheckIn] = useState<Date>();
@@ -89,17 +87,17 @@ function Home() {
 
   const location = useLocation();
 
-useEffect(() => {
-  if (location.hash) {
-    const sectionId = location.hash.replace("#", "");
-    const section = document.getElementById(sectionId);
-    if (section) {
-      setTimeout(() => {
-        section.scrollIntoView({ behavior: "smooth" });
-      }, 300); // wait for the page or animation to finish
+  useEffect(() => {
+    if (location.hash) {
+      const sectionId = location.hash.replace("#", "");
+      const section = document.getElementById(sectionId);
+      if (section) {
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: "smooth" });
+        }, 300); // wait for the page or animation to finish
+      }
     }
-  }
-}, [location]);
+  }, [location]);
 
 
   return (
@@ -107,16 +105,17 @@ useEffect(() => {
 
       {/* Hero Section */}
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1920&q=80')"
+            backgroundImage: "url('/images/bg-view.jpg')",
+            filter: "brightness(1.5)",
           }}
         >
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -127,7 +126,7 @@ useEffect(() => {
             <span className="text-amber-300">Serenity Resort</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed">
-            Experience luxury and tranquility in our oceanfront paradise. 
+            Experience luxury and tranquility in our oceanfront paradise.
             Where every moment becomes a cherished memory.
           </p>
           <motion.div
@@ -135,8 +134,8 @@ useEffect(() => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               onClick={() => setBookingOpen(true)}
               className="bg-amber-600 hover:bg-amber-700 text-lg px-8 py-4 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
             >
@@ -172,8 +171,8 @@ useEffect(() => {
               >
                 <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white">
                   <div className="relative">
-                    <img 
-                      src={room.image} 
+                    <img
+                      src={room.image}
                       alt={room.name}
                       className="w-full h-64 object-cover"
                     />
@@ -200,7 +199,7 @@ useEffect(() => {
                         <UsersIcon className="w-4 h-4 mr-1" />
                         Up to {room.maxGuests} guests
                       </div>
-                      <Button 
+                      <Button
                         onClick={() => setBookingOpen(true)}
                         className="bg-amber-600 hover:bg-amber-700"
                       >
@@ -275,8 +274,8 @@ useEffect(() => {
                 className="cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={() => setSelectedImage(image)}
               >
-                <img 
-                  src={image} 
+                <img
+                  src={image}
                   alt={`Gallery ${index + 1}`}
                   className="w-full h-48 md:h-64 object-cover hover:scale-110 transition-transform duration-300"
                 />
@@ -359,32 +358,20 @@ useEffect(() => {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-xl shadow-lg">
+              {/* <div className="bg-white p-6 rounded-xl shadow-lg">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4">Location</h3>
-                <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-600">Interactive Map Placeholder</p>
-                </div>
-              </div>
+                <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center"> */}
+              <MapLocation />
+              {/* </div>
+              </div> */}
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* WhatsApp Floating Button */}
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 2, type: "spring" }}
-        className="fixed bottom-6 right-6 z-50"
-      >
-        <Button
-          size="lg"
-          className="rounded-full w-16 h-16 bg-green-500 hover:bg-green-600 shadow-2xl"
-          onClick={() => window.open('https://wa.me/1234567890', '_blank')}
-        >
-          <MessageCircleIcon className="w-8 h-8" />
-        </Button>
-      </motion.div>
+
+      <WhatsAppFloat />
 
       {/* Booking Dialog */}
       <Dialog open={bookingOpen} onOpenChange={setBookingOpen}>
